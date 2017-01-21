@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+	xsi:schemaLocation="
+          http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://camel.apache.org/schema/spring
+            http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<camelContext id="examplecontextforlcmlabs" xmlns="http://camel.apache.org/schema/spring">
+		<propertyPlaceholder id="properties" location="my.properties" />
+		<routeBuilder ref="routeBuilder" />
+	</camelContext>
+
+	<bean id="routeBuilder" class="de.ustutt.iaas.lcm.labs.standalone.MyRouteBuilder" />
+
+	<bean id="foo" class="de.ustutt.iaas.lcm.labs.standalone.MyBean" />
+
+	<bean id="debugBean" class="de.ustutt.iaas.lcm.labs.standalone.DebugBean" />
+
+	<bean id="bean1" class="de.ustutt.iaas.lcm.labs.standalone.Bean1" />
+
+	<bean id="bla" class="org.apache.activemq.camel.component.ActiveMQComponent">
+		<property name="connectionFactory">
+			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL" value="tcp://localhost:61616" />
+			</bean>
+		</property>
+	</bean>
+
+</beans>
